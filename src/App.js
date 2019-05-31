@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Greeting from './components/Greeting'
+import Modal from './components/Modal'
+import useModal from './customHooks/useModal'
 
 function App() {
-  const [ name, setName ] = useState('web')
-
-  useEffect(() => {
-    document.title = `Hello, ${name}`
-  })
+  const { isShowing, toggle } = useModal()
 
   return (
     <div className="App">
-      <h1>Hello, {name}!</h1>
-      <button
-        onClick={() => setName('user')}
-      >
-        Click me to change the name
+      <Greeting />
+      <button className="button-default" onClick={toggle}>
+        Show Modal
       </button>
+      <Modal
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </div>
   )
 }

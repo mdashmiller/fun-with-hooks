@@ -12,7 +12,32 @@ code {
     monospace;
 }
 
-.App {
+.Greeting {
   margin: 30px;
   text-align: center;
+}
+
+.button-default {
+  display: block;
+  margin: 0 auto;
+}
+
+.modal {
+  border: 1px solid black;
+  color: white;
+  background: #333;
+  position: absolute;
+  width: 80%;
+  top: 140px;
+  left: 10%;
+}
+
+.modal-content {
+  width: 84px;
+  margin: 20px auto 4px;
+}
+
+.modal-close-button {
+  margin-left: 62px;
+  display: block;
 }
