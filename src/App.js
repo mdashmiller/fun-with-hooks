@@ -2,6 +2,7 @@ import React from 'react'
 import Greeting from './components/Greeting'
 import Modal from './components/Modal'
 import useModal from './customHooks/useModal'
+import Form from './components/Form'
 
 function App() {
   const { isShowing, toggle } = useModal()
@@ -16,6 +17,7 @@ function App() {
         isShowing={isShowing}
         hide={toggle}
       />
+      <Form />
     </div>
   )
 }
