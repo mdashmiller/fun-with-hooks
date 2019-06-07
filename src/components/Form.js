@@ -1,13 +1,15 @@
 import React from 'react'
 import useForm from '../customHooks/useForm'
+import validate from '../Utils/loginFormValidationRules'
 
 const Form = () => {
-  const initialValues = {
-    email: '',
-    password: ''
-  }
-
-  const { values, handleSubmit, handleChange } = useForm(initialValues, login)
+  
+  const {
+    values,
+    errors,
+    handleSubmit,
+    handleChange
+  } = useForm(login, validate)
 
   function login() {
     console.log(values)
@@ -23,9 +25,12 @@ const Form = () => {
             type="email"
             name="email"
             onChange={handleChange}
-            value={values.email}
+            value={values.email || ''}
             required
           />
+          {errors.email && (
+            <p>{errors.email}</p>
+          )}
         </div>
       </div>
       <div className="field">
@@ -36,7 +41,7 @@ const Form = () => {
             type="password"
             name="password"
             onChange={handleChange}
-            value={values.password}
+            value={values.password || ''}
             required
           />
         </div>
