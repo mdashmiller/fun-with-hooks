@@ -1,8 +1,9 @@
 import React from 'react'
-import Greeting from './components/Greeting'
-import Modal from './components/Modal'
+import Greeting from './components/Greeting/'
+import Modal from './components/Modal/'
 import useModal from './customHooks/useModal'
-import Form from './components/Form'
+import Form from './components/Form/'
+import ToDoList from './components/ToDo'
 
 function App() {
   const { isShowing, toggle } = useModal()
@@ -18,6 +19,7 @@ function App() {
         hide={toggle}
       />
       <Form />
+      <ToDoList />
     </div>
   )
 }

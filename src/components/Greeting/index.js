@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './index.scss'
 
 const Greeting = () => {
   const [name, setName] = useState('web')

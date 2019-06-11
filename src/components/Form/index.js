@@ -1,6 +1,7 @@
 import React from 'react'
-import useForm from '../customHooks/useForm'
-import validate from '../Utils/loginFormValidationRules'
+import useForm from '../../customHooks/useForm'
+import validate from '../../Utils/loginFormValidationRules'
+import './index.scss'
 
 const Form = () => {
   
