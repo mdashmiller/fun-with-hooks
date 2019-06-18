@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import uuidv4 from 'uuid/v4'
 import './index.scss'
 
@@ -22,6 +22,17 @@ const ToDoList = () => {
     }
   ])
 
+  const [newTodo, setNewTodo] = useState({})
+
+  useEffect(() => {
+    // when a new todo item is added
+    // give it focus
+    if (Object.keys(newTodo).length > 0) {
+      const idOfNewTodo = newTodo.uid
+      document.getElementById(idOfNewTodo).focus()
+    }
+  }, [newTodo])
+
   function handleKeyDown(e) {
     if(e.key === 'Enter') {
       addTodoOnNextLine(e.target.id)
@@ -30,20 +41,20 @@ const ToDoList = () => {
 
   function addTodoOnNextLine(currentLineId) {
     const newTodos = [...todos]
-    const insertAfter = todos.filter((todo) => todo.uid === currentLineId)
-    const spliceInIndex = todos.indexOf(insertAfter[0]) + 1
-
-    newTodos.splice(spliceInIndex, 0, {
+    const newTodo = {
       uid: uuidv4(),
       content: '',
       isComplete: false
-    })
+    }
+    // find the position directly after where the user
+    // has pressed 'Enter'
+    const insertAfter = todos.filter((todo) => todo.uid === currentLineId)
+    const spliceInIndex = todos.indexOf(insertAfter[0]) + 1
+
+    newTodos.splice(spliceInIndex, 0, newTodo)
 
     setTodos(newTodos)
-
-    // setTimeout(() => {
-    //   document.forms[0].elements[i + 1].focus()
-    // }, 0)
+    setNewTodo(newTodo)
   }
 
   return (
