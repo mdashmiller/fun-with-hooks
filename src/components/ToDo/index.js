@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import uuidv4 from 'uuid/v4'
 import './index.scss'
 
@@ -22,39 +22,50 @@ const ToDoList = () => {
     }
   ])
 
-  const [newTodo, setNewTodo] = useState({})
-
-  useEffect(() => {
-    // when a new todo item is added
-    // give it focus
-    if (Object.keys(newTodo).length > 0) {
-      const idOfNewTodo = newTodo.uid
-      document.getElementById(idOfNewTodo).focus()
-    }
-  }, [newTodo])
-
-  function handleKeyDown(e) {
+  function handleKeyDown(e, i) {
     if(e.key === 'Enter') {
-      addTodoOnNextLine(e.target.id)
+      addTodoOnNextLine(i)
+    }
+
+    if (e.key === 'Backspace' && todos[i].content === '') {
+      e.preventDefault()
+      return removeTodoAtIndex(i)
     }
   }
 
-  function addTodoOnNextLine(currentLineId) {
+  function addTodoOnNextLine(i) {
     const newTodos = [...todos]
     const newTodo = {
       uid: uuidv4(),
       content: '',
       isComplete: false
     }
-    // find the position directly after where the user
-    // has pressed 'Enter'
-    const insertAfter = todos.filter((todo) => todo.uid === currentLineId)
-    const spliceInIndex = todos.indexOf(insertAfter[0]) + 1
 
-    newTodos.splice(spliceInIndex, 0, newTodo)
+    newTodos.splice(i + 1, 0, newTodo)
 
     setTodos(newTodos)
-    setNewTodo(newTodo)
+
+    setTimeout(() => {
+      document.forms[1].elements[i + 1].focus()
+    }, 0)
+  }
+
+  function updateTodoAtIndex(e, i) {
+    const newTodos = [...todos]
+    newTodos[i].content = e.target.value
+    setTodos(newTodos)
+  }
+
+  function removeTodoAtIndex(i) {
+    if (i === 0 && todos.length === 1) return
+    setTodos(todos => todos.slice(0, i).concat(todos.slice(i + 1, todos.length)))
+    setTimeout(() => {
+      if (i === 0) {
+        document.forms[1].elements[i].focus()
+      } else {
+        document.forms[1].elements[i - 1].focus()
+      }
+    }, 0)
   }
 
   return (
@@ -62,14 +73,15 @@ const ToDoList = () => {
       <h1 className="todo-title">To Dos</h1>
       <form className="todo-list">
         <ul>
-          {todos.map(todo => 
+          {todos.map((todo, i) => 
             <div className="todo" key={todo.uid}>
               <div className="checkbox" />
               <input
                 id={todo.uid}
                 type="text"
                 value={todo.content}
-                onKeyDown={e => handleKeyDown(e)}  
+                onKeyDown={e => handleKeyDown(e, i)}
+                onChange={e => updateTodoAtIndex(e, i)}  
               />
             </div>
           )}
