@@ -9,6 +9,7 @@ const useForm = (callback, validate) => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback()
+      setIsSubmitting(false)
     }
   }, [errors])
 
@@ -32,7 +33,8 @@ const useForm = (callback, validate) => {
     values,
     errors,
     handleSubmit,
-    handleChange
+    handleChange,
+    isSubmitting
   }
 }
 
