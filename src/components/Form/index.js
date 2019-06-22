@@ -2,7 +2,6 @@ import React from 'react'
 import useForm from '../../customHooks/useForm'
 import validate from '../../Utils/loginFormValidationRules'
 import './index.scss'
-import { spawn } from 'child_process';
 
 const Form = () => {
   
@@ -47,6 +46,9 @@ const Form = () => {
             value={values.password || ''}
             required
           />
+          {errors.password && (
+            <p>{errors.password}</p>
+          )}
         </div>
       </div>
       <button className="button" type="submit">Login</button>
