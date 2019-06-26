@@ -4,6 +4,7 @@ import Modal from './components/Modal/'
 import useModal from './customHooks/useModal'
 import Form from './components/Form/'
 import ToDoList from './components/ToDo'
+import Dice from './components/Dice'
 
 function App() {
   const { isShowing, toggle } = useModal()
@@ -20,6 +21,7 @@ function App() {
       />
       <Form />
       <ToDoList />
+      <Dice />
     </div>
   )
 }
