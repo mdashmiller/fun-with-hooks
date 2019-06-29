@@ -1,10 +1,11 @@
 import React from 'react'
 import Greeting from './components/Greeting/'
 import Modal from './components/Modal/'
-import useModal from './customHooks/useModal'
+import useModal from './hooks/useModal'
 import Form from './components/Form/'
 import ToDoList from './components/ToDo'
 import Dice from './components/Dice'
+import MusicPlayer from './components/MusicPlayer'
 
 function App() {
   const { isShowing, toggle } = useModal()
@@ -22,6 +23,7 @@ function App() {
       <Form />
       <ToDoList />
       <Dice />
+      <MusicPlayer />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import useForm from '../../customHooks/useForm'
+import useForm from '../../hooks/useForm'
 import validate from '../../Utils/loginFormValidationRules'
 import './index.scss'
 
