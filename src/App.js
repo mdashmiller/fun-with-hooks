@@ -6,6 +6,7 @@ import Form from './components/Form/'
 import ToDoList from './components/ToDo'
 import Dice from './components/Dice'
 import MusicPlayer from './components/MusicPlayer'
+import List from './components/List'
 
 function App() {
   const { isShowing, toggle } = useModal()
@@ -24,6 +25,13 @@ function App() {
       <ToDoList />
       <Dice />
       <MusicPlayer />
+      <div className="container">
+        <div className="row">
+          <div className="col-6 justify-content-center my-5">
+            <List />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
