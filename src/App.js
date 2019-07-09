@@ -6,6 +6,7 @@ import Form from './components/Form/'
 import ToDoList from './components/ToDo'
 import Dice from './components/Dice'
 import MusicPlayer from './components/MusicPlayer'
+import Timer from './components/Timer'
 import List from './components/List'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <ToDoList />
       <Dice />
       <MusicPlayer />
+      <Timer />
       <div className="container">
         <div className="row">
           <div className="col-6 justify-content-center my-5">
